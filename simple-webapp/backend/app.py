@@ -2,7 +2,8 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, supports_credentials=True)  # Ensure CORS is properly configured
+
 
 @app.route('/greet', methods=['POST'])
 def greet():

@@ -8,12 +8,14 @@ function App() {
 
   const handleGreet = async () => {
     try {
-      const response = await axios.post('http://localhost:5000/greet', { name });
-      setMessage(response.data.message);
+      const response = await axios.post('http://localhost:5000/greet', { name }, { withCredentials: true });
+      setMessage(response.data.message); // Success case
     } catch (error) {
-      setMessage(error.response ? error.response.data.message : 'An error occurred');
+      // Check if the error response exists and has a message
+      setMessage(error.response && error.response.data ? error.response.data.message : 'An error occurred');
     }
   };
+  
 
   return (
     <Container maxWidth="sm" style={{ marginTop: '50px' }}>
